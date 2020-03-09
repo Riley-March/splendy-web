@@ -1,0 +1,22 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: #0a040514 8px 8px 7px;
+    background: var(--yellow-color);
+
+}
+
+.title {
+    font-size: 18px;
+    color: var(--secondary-color)
+}
+
+.icon {
+    font-size: 30px;
+    color: var(--yellow-text);
+}
