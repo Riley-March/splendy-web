@@ -1,0 +1,7 @@
+.checkbox {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-right: 1rem;
+    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none; -o-user-select:none;
+    cursor: pointer;
+}

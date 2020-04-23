@@ -1,5 +1,5 @@
 .btn {
-    background: var(--primary-color);
+    background-color: white;
     font: inherit;
     height: 2.5rem;
     font-size: 1rem;
@@ -9,37 +9,20 @@
     border-radius: 3px;
     padding: 8px 16px;
     text-align: center;
-    color: white;
+    color: black;
     cursor: pointer;
 }
 
 .btn-primary {
-    background: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    background: white;
+    border: 1px solid white;
 }
 
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus {
     outline: none;
-    background: var(--primary-color-hover);
-    border: 1px solid var(--primary-color-hover);
-}
-
-.btn-danger {
-    background: var(--danger-color);
-    border: 1px solid var(--danger-color);
-  }
-  
-.btn-danger:hover,
-.btn-danger:active,
-.btn-danger:focus {
-    outline: none;
-    background: var(--danger-color-hover);
-    border: 1px solid var(--danger-color-hover);
-}
-
-.block {
-    display: block;
-    width: 100%;
+    background: var(--grey-color);
+    border: 1px solid var(--grey-color);
+    color: black;
 }

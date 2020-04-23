@@ -1,0 +1,30 @@
+.stats-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+.ticket-square {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: dashed 0.25rem black;
+    margin: 1rem;
+}
+
+.stats-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+

@@ -9,10 +9,10 @@ const STYLES = [
     "btn-danger block"
 ];
 
-const Button = ({ label, btnStyle, onClick }) => {
-    const check_button_style = STYLES.includes(btnStyle) ? btnStyle : STYLES[0];
+const Button = ({ label, btn_style, on_click }) => {
+    const check_button_style = STYLES.includes(btn_style) ? btn_style : STYLES[0];
     return (
-        <button className={`btn ${check_button_style}`} onClick={onClick}>
+        <button className={`btn ${check_button_style}`} onClick={on_click}>
             {label}
         </button>
     )

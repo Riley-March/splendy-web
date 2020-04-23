@@ -1,9 +1,20 @@
-.cards {
+.ticket-page {
     display: flex;
-    flex-direction: column;
-    flex-basis: 30rem;
-    max-width: 30rem;
+    flex-direction: row;
     justify-content: center;
-    margin: 0 auto;
-    margin-top: 1rem;
+    margin: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
 }
+
+.card-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: space-evenly;
+}
+
+
