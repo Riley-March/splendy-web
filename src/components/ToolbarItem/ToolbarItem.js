@@ -4,17 +4,16 @@ import './ToolbarItem.css';
 
 const ToolbarItem = (props) => {
     const check_active = props.active ? 'item-active' : true;
-
     return (
-        <div key={props.key}>
-            {props.is_checkbox ? (
+        <div>
+            {props.has_checkbox ? (
                 <label className="checkbox-item">
-                    <input onChange={props.handleCheck} type="checkbox" defaultChecked={props.isChecked} defaultValue={props.value} />
-                    {props.value}
+                    <input onChange={props.handleClick} type="checkbox" defaultChecked={props.is_checked} defaultValue={props.title} />
+                    {props.title}
                 </label>
             ) : (
-                <div className={`text-item ${check_active}`} onClick={props.handleCheck}>
-                    {props.value}
+                <div className={`text-item ${check_active}`} onClick={props.handleClick}>
+                    {props.title}
                 </div>
             )}
         </div>
