@@ -5,26 +5,19 @@
     flex-direction: column;
     align-items: center;
     box-shadow: #0a040514 8px 8px 7px;
-    background: var(--orange-color);
     color: black;
     width: 20%;
     -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none; -o-user-select:none;
-}
-
-.card-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 .title {
-    font-size: 1.5rem;
     padding-bottom: 0.25rem;
-    border-bottom: 0.1rem solid black;
-    font-weight: 500;
     margin: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 0.1rem solid black;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .sub-title {
@@ -33,39 +26,27 @@
     margin: 0;
 }
 
-
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    
-}
-
 .quantity {
     margin-top: 0rem;
-    margin-top: 0rem;
     font-size: 2rem;
-    align-self: center;
-}
-
-h4 {
-    margin: 0.25rem;
-}
-
-.card-blue {
-    background: var(--blue-color);
 }
 
 .card-yellow {
-    background: var(--yellow-color);
+    background-color: var(--yellow-color);
 }
 
 .card-pink {
-    background: var(--pink-color);
+    background-color: var(--pink-color);
 }
 
 .card-green {
-    background: var(--green-color);
+    background-color: var(--green-color);
+}
+
+.card-orange {
+    background-color: var(--orange-color);
+}
+
+.card-blue {
+    background-color: var(--blue-color);
 }

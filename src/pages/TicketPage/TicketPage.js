@@ -5,14 +5,17 @@ import './TicketPage.css';
 
 import Card from '../../components/Card/Card';
 import ToolBar from '../../components/Toolbar/Toolbar';
+import Spinner from '../../components/Spinner/Spinner';
 import storage from '../../modules/storage';
+import colors from '../../modules/colors';
 
 const TicketPage = () => {
     const [ tickets, setTickets ] = useState([]);
-    const [ connected, setConnected ] = useState(false);
-    
+    const [ loading, setLoading ] = useState(false);
+
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:5000');
+        setLoading(true);
+        const ws = new WebSocket(`ws://${process.env.REACT_APP_API_URL}`);
         ws.onopen = () => {
             console.log('Connected to Web Socket');
         }
@@ -29,7 +32,6 @@ const TicketPage = () => {
                     tickets = tickets.map(ticket => ({...ticket, visible: true}));
                 }
                 setTickets(tickets);
-                setConnected(true);
                 tickets.forEach(ticket => {
                     if(ticket.quantity > 0) {
                         addNotification({
@@ -40,6 +42,7 @@ const TicketPage = () => {
                         });
                     }
                 });
+                setLoading(false);
             }
         }
         return () => { ws.close(); }
@@ -74,30 +77,33 @@ const TicketPage = () => {
     }
     
     return(
-        <React.Fragment>
-            <ToolBar 
-                title='Toggle Visible Tickets' 
-                items={tickets}
-                handleClick={handleTicketFilter}
-                has_checkbox={true}
-            />
-            <div className="ticket-page">
-                <div className="card-grid">
-                    {connected && tickets.filter(ticket => ticket.visible).map((ticket, index) => {
-                        return (
-                            <Card
-                                key={index}
-                                title={ticket.name}
-                                sub_title='Splendour In The Grass'
-                                type={ticket.type}
-                                quantity={ticket.quantity}
-                                card_style={index}
-                            />
-                        )
-                    })}
-                </div>
-            </div>
-        </React.Fragment>
+        <div>
+            {loading ? <Spinner /> : (
+                <React.Fragment>
+                    <ToolBar 
+                        title='Toggle Visible Tickets' 
+                        items={tickets}
+                        handleClick={handleTicketFilter}
+                        has_checkbox={true}
+                    />
+                    <div className="ticket-page">
+                        <div className="card-grid">
+                            {tickets.filter(ticket => ticket.visible).map((ticket, index) => {
+                                return (
+                                    <Card
+                                        key={index}
+                                        title={ticket.name}
+                                        sub_title='Splendour In The Grass'
+                                        quantity={ticket.quantity}
+                                        color={colors.get_color(index)}
+                                    />
+                                )
+                            })}
+                        </div>
+                    </div>
+                </React.Fragment>
+            )}
+        </div>
     )
 }
 

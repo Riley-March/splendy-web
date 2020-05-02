@@ -4,8 +4,8 @@ import './Toolbar.css';
 
 import ToolbarItem from '../ToolbarItem/ToolbarItem';
 
-const ToolBar = (props) => {
-    let toolbar_items = props.items.map((item, index) => {
+const Toolbar = (props) => {
+    const items = props.items.map((item, index) => {
         return {
             id: index,
             title: item.name,
@@ -16,17 +16,17 @@ const ToolBar = (props) => {
     });
 
     return (
-        <div className="toolbar-outer">
-            <div className="toolbar">
-                <h2>{props.title}</h2>
-                <div className="toolbar-items">
-                    {toolbar_items.map((control, index) => {           
+        <div className="outer">
+            <div data-testid="toolbar" className="toolbar">
+                <h2 data-testid="title">{props.title}</h2>
+                <div data-testid="items" className="items">
+                    {items.map((item, index) => {           
                         return (
                             <ToolbarItem
                                 key={index}
                                 handleClick={props.handleClick}
-                                has_checkbox={control.has_checkbox}
-                                {...control}
+                                has_checkbox={item.has_checkbox}
+                                {...item}
                             />
                         )
                     })}
@@ -36,4 +36,4 @@ const ToolBar = (props) => {
     );
 }
 
-export default ToolBar;
+export default Toolbar;

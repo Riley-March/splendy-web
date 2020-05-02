@@ -1,25 +1,29 @@
 import React, { useState, useEffect }  from 'react';
 
-import ToolBar from '../../components/Toolbar/Toolbar';
-import StatsItem from '../../components/StatsItem/StatsItem';
-
 import './StatsPage.css';
 
-const StatusPage = () => {
-    const [ stats, setStats ] = useState([]);
-            
+import Toolbar from '../../components/Toolbar/Toolbar';
+import StatsRow from '../../components/StatsRow/StatsRow';
+import Spinner from '../../components/Spinner/Spinner';
+
+const StatsPage = () => {
+    const [ tickets, setTickets ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
+
     useEffect(() => {
         async function fetchData() {
-            await fetch('http://localhost:5000/get_stats').then(res => {
+            setLoading(true);
+            await fetch(`http://${process.env.REACT_APP_API_URL}/get_stats`).then(res => {
                 res.json().then(function(data) {
-                    const stats = data[0].tickets.map((data, index) => {
+                    const tickets = data[0].tickets.map((data, index) => {
                         if(index === 0){
                             return ({...data, active: true})
                         } else {
                             return ({...data, active: false});
                         }
                     });
-                    setStats(stats);
+                    setTickets(tickets);
+                    setLoading(false);
                 });
             }).catch(err => {
                 console.log(err);
@@ -31,43 +35,40 @@ const StatusPage = () => {
     const handleStatChange = (e) => {
         const clicked_stat = e.currentTarget.textContent;
         change_stat(clicked_stat);
-
     }
 
-    const change_stat = (clicked_stat) => {
-        let stat_list = [...stats];
-        stat_list = stat_list.map(stat => {
-            if(stat.name === clicked_stat){
-                stat.active = true;
+    const change_stat = (click_ticket) => {
+        let tickets_copy = [...tickets];
+        tickets_copy = tickets_copy.map(ticket => {
+            if(ticket.name === click_ticket){
+                ticket.active = true;
             } else {
-                stat.active = false;
+                ticket.active = false;
             }
-            return stat;
+            return ticket;
         });
-        setStats(stat_list);
+        setTickets(tickets_copy);
     }
 
     return (
-        <React.Fragment>
-            <ToolBar 
-                title='Ticket Stats' 
-                items={stats}
-                handleClick={handleStatChange}
-                has_checkbox={false}
-            />
-            <div className="stats-page">
-                {stats.filter(ticket => ticket.active).map((ticket, index) => {
-                    return <StatsItem 
-                        key={index}
-                        value={ticket.type}
-                        daily_total={ticket.daily}
-                        weekly_total={ticket.weekly}
-                        all_time_total={ticket.alltime}
+        <div>
+            {loading ? <Spinner /> : (
+                <React.Fragment>
+                    <Toolbar 
+                        title='Ticket Stats' 
+                        items={tickets}
+                        handleClick={handleStatChange}
+                        has_checkbox={false}
                     />
-                })}
-            </div>
-        </React.Fragment>
+                    <div className="stats-grid">
+                        {tickets.filter(ticket => ticket.active).map((ticket, index) => {
+                            return <StatsRow key={index} stats={ticket.stats}/>
+                        })}
+                    </div>
+                </React.Fragment>
+            )}
+        </div>
     )
 }
 
-export default StatusPage;
+export default StatsPage;

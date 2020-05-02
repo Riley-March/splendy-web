@@ -1,22 +1,18 @@
-h2 {
-    color: white;
-}
-
 .navbar-outer {
     display: flex;
     justify-content: center;
-    color: white;
     background-color: var(--purple-color);
 }
 
 .navbar {
     display: flex;
+    max-width: 1200px;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     color: white;
     background-color: var(--purple-color);
-    max-width: 1200px;
-    width: 100%;
+    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none; -o-user-select:none;
 }
 
 .navbar-links {
@@ -28,6 +24,7 @@ h2 {
     margin-left: 1rem;
     cursor: pointer;
     text-decoration: none;
+    color: white;
 }
 
 .icon {

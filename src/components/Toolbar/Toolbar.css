@@ -1,4 +1,4 @@
-.toolbar-outer {
+.outer {
     display: flex;
     justify-content: center;
     padding: 1rem;
@@ -17,33 +17,11 @@
     color: white;
 }
 
-.toolbar-section h2 {
-    margin: 0;
-}
-
-.stats-bar {
+.items {
     display: flex;
     flex-direction: row;
-    margin-left: 2rem;
-}
-
-.stats-bar-item {
-    margin-right: 1rem;
-    cursor: pointer;
-    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none; -o-user-select:none;
-    
-}
-
-.item-active {
-    border-bottom: 0.25rem solid white;
 }
 
 .toolbar h2 {
     margin: 0.5rem;
-}
-
-.toolbar-items {
-    display: flex;
-    flex-direction: row;
-    margin-left: 1rem;
 }
