@@ -29,3 +29,20 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         dockerfile: Dockerfile
         tags: latest
+    - name: Deploy package to digitalocean
+      uses: appleboy/ssh-action@master
+      env:
+          GITHUB_USERNAME: ${{ secrets.USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.PORT }}
+        envs: GITHUB_USERNAME, GITHUB_TOKEN
+        script: |
+          docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+          docker pull docker.pkg.github.com/riley-march/splendy-web/splendy-web:latest
+          docker stop splendy
+          docker rm splendy
+          docker run -d -p 2000:80 --name splendy docker.pkg.github.com/riley-march/splendy-web/splendy-web:latest
