@@ -1,3 +1,4 @@
 ## Splendy
 
-![Build Status](https://github.com/riley-march/splendy-web/workflows/build/badge.svg)
+![Build](https://github.com/Riley-March/Splendy-web/workflows/Build/badge.svg)
+![Test](https://github.com/Riley-March/Splendy-web/workflows/Test/badge.svg)
